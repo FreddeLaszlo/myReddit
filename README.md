@@ -3,3 +3,4 @@ A Reddit posts viewer, allowing users to view posts without having to login to R
 
 ## Wireframes
 ![Alt text](./public/wf_01.svg)
+<img src="./public/wf_01.svg">
