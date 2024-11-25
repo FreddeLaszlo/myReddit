@@ -1,0 +1,41 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+#root {
+    max-width: 1000px;
+    margin: 10px auto;
+    padding: 10px 10px;
+} 
+
+
+header {
+    padding: 4px;
+    border-bottom: 1px solid grey;
+    margin-bottom: 8px;
+}
+
+header nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+header nav ul li {
+   display: inline;
+   margin-right: 10px;;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+
+.active {
+    color: burlywood;
+}
