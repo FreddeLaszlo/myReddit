@@ -1,0 +1,35 @@
+.postcard {
+    margin-bottom: 10px;
+    overflow: hidden;
+    border-bottom: 1px solid gray;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    padding-bottom: 8px;
+}
+
+.postcard h3 {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin: 0;
+    margin-bottom: 7px;
+}
+
+.postcard h3 img {
+    width: 80px;
+    margin-right: 10px;
+    transition: width 1s;
+}
+
+.author {
+    font-weight: bold;
+    font-size: 0.8rem;
+    margin-bottom: 7px;
+}
+
+.age {
+    font-size: 0.7rem;
+    color: rgb(148, 148, 148);
+}

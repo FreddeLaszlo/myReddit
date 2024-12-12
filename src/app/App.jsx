@@ -1,39 +1,34 @@
 import {
-    Route,
-
-    createBrowserRouter,
-    createRoutesFromElements,
-    RouterProvider,
-    Navigate
+  Route,
+  createBrowserRouter,
+  createRoutesFromElements,
+  RouterProvider,
 } from "react-router-dom";
+
 import SubReddits from "../features/SubReddits/SubReddits";
+import SubReddit from "../features/SubReddit/SubReddit";
 import AppLayout from "./AppLayout";
+import { loadSubReddits } from '../features/SubReddits/subRedditsSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
-const loc = window.location.pathname;
-const path = loc.length === 1 ? loc : loc.replace(/\/$/, '');
-
-const setIndex = () => {
-    if (window.location.pathname !== '/subreddits') {
-        window.location.replace("/subreddits")
-    } else {
-        return <SubReddits />
-    }
-}
 
 const router = createBrowserRouter(
-    createRoutesFromElements(
-      <Route path="/" element={<AppLayout />}>
-        <Route index element={<SubReddits />} />
-        <Route path="subreddits" element={<SubReddits />} />
-      </Route>
-    ), { basename: path, }
+  createRoutesFromElements(
+    <Route path="/" element={<AppLayout />}>
+      <Route index element={<SubReddits />} />
+      <Route path="/" element={<SubReddits />} />
+      <Route path="/:redditId" element={<SubReddit />} />
+    </Route>
+  ), { basename: import.meta.env.VITE_BASENAME, }
+)
+
+export default function App() {
+  const dispatch = useDispatch();
+
+  dispatch(loadSubReddits());
+  return ( 
+    <>
+      <RouterProvider router={router} />
+    </>
   )
-  
-  export default function App() {
-    return (
-      <>
-        <RouterProvider router={router} />
-      </>
-    )
-  }
-  
+}

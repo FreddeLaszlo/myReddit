@@ -1,0 +1,30 @@
+.fetching {
+    border: 1px solid lightgray;
+    box-shadow: 3px 3px 6px darkgray;
+    margin-bottom: 14px;
+    padding: 8px;
+    animation-name: fetching-spinner; 
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes fetching-spinner {
+    0% { 
+        background-color: rgb(240,240,240); 
+        border-radius: 7px; 
+        opacity: 0; 
+        border: 1px solid rgb(240,240,240); 
+    }
+    50% { 
+        background-color: rgb(240,240,240); 
+        border-radius: 7px; 
+        opacity: 1; 
+        border:  1px solid rgb(240,240,240);  
+    }
+    100% { 
+        background-color: rgb(240,240,240); 
+        border-radius: 7px; 
+        opacity: 0; 
+        border:  1px solid rgb(240,240,240); 
+    }
+}

@@ -1,0 +1,10 @@
+.noMoreData {
+    display: block;
+    padding: 5px;
+    background-color: rgb(255, 202, 202);
+    text-align: center;
+    width: 100%;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}

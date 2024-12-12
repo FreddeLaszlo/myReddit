@@ -1,39 +1,28 @@
 import { Outlet, NavLink } from "react-router-dom";
 import ROUTES from "./routes";
 import myRedditLogo from '/myReddit_logo.svg';
+import Search from "../features/Search/Search";
+import Footer from "../features/Footer/Footer";
 import './AppLayout.css';
 
 
+
 export default function AppLayout() {
+
     return (
-        <div>
+        <>
             <header>
                 <nav>
-                    <ul>
-                        <li>
-                            <NavLink to={ROUTES.subRedditsRoute()} >
-                                <img src={myRedditLogo} width="50px"></img>
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink to={ROUTES.subRedditsRoute()} >
-                                Reddits
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink to={ROUTES.hotSubRedditsRoute()} >
-                                Hot
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink to={ROUTES.popularSubReddits()} >
-                                Popular
-                            </NavLink>
-                        </li>
-                    </ul>
+                    <NavLink to={ROUTES.subRedditsRoute()} >
+                        <img src={myRedditLogo} id="logo"></img>
+                    </NavLink>
+                    <Search />
                 </nav>
             </header>
-            <Outlet />
-        </div>
+            <main>
+                <Outlet />
+            </main>
+            <Footer />
+        </>
     );
 }

@@ -1,0 +1,62 @@
+.redditCard {
+    border: 1px solid lightgray;
+    background-color: rgb(245, 239, 239);
+    width: 100%;
+    margin-bottom: 18px;
+    padding: 8px;
+    text-align: left;
+    position: relative;
+    filter: drop-shadow(2px 2px 4px gray)
+}
+
+.redditCard-pointer {
+    cursor: pointer;
+}
+
+.redditCard h2 {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.redditCard h2 img {
+    width: 40px;
+    margin-right: 10px;
+    transition: width 1s;
+}
+
+.scrolldown {
+    display: grid;
+    transition: grid-template-rows 500ms;
+}
+
+.reveal {
+    grid-template-rows: min-content 1fr;
+}
+
+.hide {
+    grid-template-rows: min-content 0fr;
+}
+
+.scrolldown div {
+    overflow: hidden;
+}
+
+.showhide {
+    text-decoration: none;
+    color: black;
+    right: 0;
+    left: auto;
+    position: absolute;
+    font-size: 0.8rem;
+    padding: 0 10px 0 10px;
+    background-color: rgb(245, 239, 239);
+    border-radius: 5px;;
+}
+
+.showhide:hover {
+    color: blue;
+    text-decoration: underline;
+}

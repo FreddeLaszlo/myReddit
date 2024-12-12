@@ -1,7 +1,6 @@
 const ROUTES = {
-    subRedditsRoute: () => '/subreddits',
-    hotSubRedditsRoute: () => '/hotsubreddits',
-    popularSubReddits: () => '/popularsubreddits',
+    subRedditsRoute: () => '/',
+    subReddit: (id) => `/${id}`,
     user: (id) => `/users/${id}`,
   };
   

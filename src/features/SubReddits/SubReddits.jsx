@@ -1,50 +1,62 @@
-import { useEffect, useState } from "react";
-import { useGetSubRedditsQuery } from "../../services/reddit";
-import SubRedditCard from "./SubRedditCard/SubRedditCard";
+import SubRedditCard from "./SubRedditCard";
+import { loadSubReddits } from '../SubReddits/subRedditsSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import Fetching from "../Fetching/Fetching";
+import Error from "../Error/Error";
+import NoMoreData from "../NoMoreData/NoMoreData";
+import LoadMoreData from "../LoadMoreData/LoadMoreData";
 import './SubReddits.css';
 
 const SubReddits = () => {
-    const [after, setAfter] = useState('');
-    const { data, error, isFetching } = useGetSubRedditsQuery(after);
 
+    const dispatch = useDispatch();
+    const { data, isLoading, after, hasError} = useSelector((state) => state.subreddits);
+      
+    /*
     useEffect(() => {
         const onScroll = () => {
+            console.log("onScroll event fired.");
             const scrolledToBottom = (window.innerHeight + Math.round(window.scrollY)) >= document.body.offsetHeight;
-            if(scrolledToBottom && !isFetching) {
-                console.log("Fetching more data...");
-                console.log(data.after);
-                setAfter(data.after);
+            if(scrolledToBottom && !isLoading) {
+                dispatch(loadSubReddits());
             }
         }
 
         document.addEventListener("scroll", onScroll);
 
         return function () {
-            document.removeEventListener("scroll", onScroll);
-          };
-
-    }, [after, isFetching]);
-
-    const handleOnClick = () => { setAfter(data.after) }
+            document.removeEventListener("scroll", onScroll); 
+        };
+    }, []);
+    */
+   
+    const handleOnClick = () => {
+        if(!isLoading) {
+            dispatch(loadSubReddits()); 
+        }
+    }
 
     const moreOrFetching = () => {
-        if(after && after.length !== 0 && !isFetching) {
-            return <div className="loadMore" onClick={handleOnClick}>Click or scroll to load more...<br/>&darr;</div>
+        if(after && after.length !== 0 && !isLoading) {
+            //return <div className="loadMore" onClick={handleOnClick}>Click or tap to load more...<br/>&darr;</div>
+            return <LoadMoreData clickHandler={handleOnClick}/>
         }
-        if(isFetching) {
-            return <p>Fetching data...</p>
+        if(isLoading) {
+            return ( 
+                <Fetching width="100%" height="100px" />
+            )
         }
-        return <p>No more Reddits</p>
+        return <NoMoreData />
          
     }
 
-    if(error) return <p>{error}</p>
-
-    const reddits = data?.children ?? [];
+    if(hasError) {
+        return <Error />
+    }
 
     return (
         <>
-            {reddits.map(({ data }) => <SubRedditCard data={data} key={data.id}/>)}
+            {data.map(({ data }) => <SubRedditCard data={data} key={data.id}/>)}
             {moreOrFetching()} 
 
         </>

@@ -1,0 +1,11 @@
+.loadMoreData {
+    display: block;
+    padding: 5px;
+    background-color: rgb(200, 245, 200);
+    text-align: center;
+    width: 100%;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+}

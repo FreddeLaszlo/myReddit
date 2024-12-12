@@ -1,6 +1,10 @@
 .loadMore {
     display: block;
     padding: 10px;
-    background-color: lightcyan;
+    background-color: rgb(240,240,240);
     text-align: center;
+    width: 50%;
+    margin: 0 auto;
+    margin-bottom: 20px;
 }
+
