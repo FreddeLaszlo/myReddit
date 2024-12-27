@@ -6,10 +6,11 @@ import {
 } from "react-router-dom";
 
 import SubReddits from "../features/SubReddits/SubReddits";
-import SubReddit from "../features/SubReddit/SubReddit";
+import SubRedditPosts from "../features/SubReddits/SubRedditPosts";
+import PostComments from "../features/Posts/PostComments";
 import AppLayout from "./AppLayout";
 import { loadSubReddits } from '../features/SubReddits/subRedditsSlice';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 
 const router = createBrowserRouter(
@@ -17,7 +18,8 @@ const router = createBrowserRouter(
     <Route path="/" element={<AppLayout />}>
       <Route index element={<SubReddits />} />
       <Route path="/" element={<SubReddits />} />
-      <Route path="/:redditId" element={<SubReddit />} />
+      <Route path="/:redditId" element={<SubRedditPosts />} />
+      <Route path="/post/:postId" element={<PostComments />} />
     </Route>
   ), { basename: import.meta.env.VITE_BASENAME, }
 )

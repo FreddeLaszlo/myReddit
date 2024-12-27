@@ -56,7 +56,7 @@ const SubReddits = () => {
 
     return (
         <>
-            {data.map(({ data }) => <SubRedditCard data={data} key={data.id}/>)}
+            {data.map(({ data }) => <SubRedditCard data={data} key={`reddit_key_${data.id}`}/>)}
             {moreOrFetching()} 
 
         </>

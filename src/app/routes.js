@@ -1,7 +1,8 @@
 const ROUTES = {
     subRedditsRoute: () => '/',
     subReddit: (id) => `/${id}`,
-    user: (id) => `/users/${id}`,
+    post: (id) => `/post/${id}`,
+    user: (id) => `/user/${id}`,
   };
   
   export default ROUTES;

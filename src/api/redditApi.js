@@ -6,12 +6,13 @@ const fetchData = async (url, search, after) => {
     const throttledRun = throttleAsync(fetch, 6000);
     const urlEdited = url.endsWith('/') ? url.substring(0, url.length - 1) : url;
     const params = buildParams(search, after);
-    const fullUrl = `${baseUrl}${url}${params}`;
+    const fullUrl = `${baseUrl}${urlEdited}${params}`;
+    console.log(fullUrl);
     try {
         const data = await throttledRun(fullUrl);
         if (data === false) { return false; }
         const json = await data.json();
-        return json.data;
+        return json;
     } catch (error) {
         console.log(error);
     }

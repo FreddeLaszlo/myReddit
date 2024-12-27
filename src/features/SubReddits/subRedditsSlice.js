@@ -42,7 +42,7 @@ const sliceOptions = {
                 state.isLoading = false;
                 state.hasError = false;
                 if (action.payload !== false) {
-                    state.data.push(...action.payload.children);
+                    state.data.push(...action.payload.data.children);
                     state.after = action.payload.after;
                     state.hasLoaded = true;
                 }

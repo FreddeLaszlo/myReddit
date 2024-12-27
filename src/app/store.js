@@ -1,15 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
-import postsReducer from "../features/Posts/postsSlice";
-import subRedditsReducer from "../features/SubReddits/subRedditsSlice"
-import searchSlice from "../features/Search/SearchSlice"
+import postsReducer from "../features/Posts/PostsSlice";
+import subRedditsReducer from "../features/SubReddits/subRedditsSlice";
+import searchReducer from "../features/Search/SearchSlice";
+import commentsReducer from "../features/Comments/CommentsSlice";
 
 export const store = configureStore({
   reducer: {
+    comments: commentsReducer,
     subreddits: subRedditsReducer,
     posts: postsReducer,
-    search: searchSlice
+    search: searchReducer,
   }
   });
-
-//setupListeners(store.dispatch);
-

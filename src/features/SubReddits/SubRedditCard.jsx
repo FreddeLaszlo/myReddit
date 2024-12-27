@@ -1,10 +1,11 @@
 import Image from "../Image/Image";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import ROUTES from "../../app/routes";
 import { marked } from "marked";
 import DOMPurify from "dompurify";
-import { useState, useLayoutEffect, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { getSubRedditIcon } from "../../api/redditApi";
+import markdownToReact from "../../api/helpers";
 import './SubRedditCard.css';
 
 
@@ -17,12 +18,6 @@ const getPublicDescription = (data) => {
     if (data.description && data.description !== "") return marked.parse(data.description);
     return "";
 }
-
-const handleHrefClick = (e) => {
-    e.stopPropagation();
-    return true;
-}
-
 
 const icon = (data) => {
     const src = getSubRedditIcon(data);
@@ -43,40 +38,20 @@ const MoreInfo = ({ data, shortDescription }) => {
     }
 
 
-    useEffect(() => {
-        const html = document.getElementById(`description_${data.id}`);
-        const hrefs = html ? html.getElementsByTagName('a') : [];
-
-        for (let i = 0; i < hrefs.length; i++) {
-            hrefs[i].setAttribute("target", "_blank");
-            hrefs[i].addEventListener("click", handleHrefClick);
-        }
-
-        return function () {
-            const html = document.getElementById(`description_${data.id}`);
-            const hrefs = html ? html.getElementsByTagName('a') : [];
-            for (let i = 0; i < hrefs.length; i++) {
-                hrefs[i].removeEventListener("click", handleHrefClick);
-            }
-        }
-
-    }, []);
+    const parsed = markdownToReact(description);
 
     if (description.length > 0) {
         if (shortDescription) {
-            return (
-                <div id={`description_${data.id}`} dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(description) }}></div>
-            )
+           return <div id={`description_${data.id}`}>{parsed}</div>
         }
         return (
             <>
                 <div className={styleClass}>
                     <span></span>
-                    <div id={`description_${data.id}`} dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(description) }}></div>
+                    <div id={`description_${data.id}`}>{parsed}</div>
                 </div>
                 <a href="." className="showhide" onClick={handleReveal}>{showInfoText}</a>
             </>
-
         );
     }
     return false;
@@ -88,19 +63,18 @@ const SubRedditCard = ({ data, shortDescription = true }) => {
 
     const handleClick = () => {
         if (shortDescription) {
-            document.getElementById(data.id).click();
+            document.getElementById(`reddit_${data.id}`).click();
         }
     }
 
     const url = ROUTES.subReddit(data.id);
-    const nav = useNavigate();
 
     // Note Link is not displayed, so Link styling does not affect subreddit styling. 
     // The Link is activated by the div onClick handler.
     return (
         <div className={pointer} onClick={handleClick}>
-            <Link to={url} id={data.id} style={{ display: "none" }} />
-            
+            <Link to={url} id={`reddit_${data.id}`} style={{ display: "none" }} />
+
             <h2>{icon(data)}{data.title}</h2>
             <MoreInfo data={data} shortDescription={shortDescription}></MoreInfo>
         </div>

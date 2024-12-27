@@ -1,0 +1,11 @@
+.spoiler {
+    border-radius: 20px;
+    border-color: whitesmoke;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: whitesmoke;
+    text-align: center;
+    padding: 4px 10px;
+    font-size: 0.7rem;
+    margin-left: 4px;
+    float: right;
+}
